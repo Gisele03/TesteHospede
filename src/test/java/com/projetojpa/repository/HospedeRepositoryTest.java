@@ -16,87 +16,87 @@ import com.projetojpa.entities.Hospede;
 
 @DataJpaTest
 class HospedeRepositoryTest {
-	
+
 	@Autowired
 	private HospedeRepository hospedeRepository;
-	
+
 	@DisplayName("Testando o Save")
 	@Test
 	void testSalvarRepository() {
-		
+
 		Hospede hospede1 = new Hospede(null, "Julia Maria", "julia@gmail.com", "(00)0000-0000");
-		
+
 		Hospede saveHospede = hospedeRepository.save(hospede1);
-		
+
 		assertNotNull(saveHospede);
 		assertTrue(saveHospede.getId() > 0);
 	}
 
- @DisplayName("Testando Get para todos Hospedes")
- @Test
-void testGetAllRepository() {
-	
-	Hospede hospede1 = new Hospede(null, "Julia Maria", "julia@gmail.com", "(00)0000-0000");
-	
-	Hospede hospede2 = new Hospede(null, "Julio Fernando", "julio@gmail.com", "(00)0000-0000");
-	
-	hospedeRepository.save(hospede1);
-	hospedeRepository.save(hospede2);
-	
-	List<Hospede> hospedeList = hospedeRepository.findAll();
-	
-	assertNotNull(hospedeList);
-	assertEquals(2, hospedeList.size());
-	
- }
- 
- @DisplayName("Testando GET By ID")
- @Test
- void testGetById() {
-	 
-	 Hospede hospede1 = new Hospede(null, "Julio Fernando", "julio@gmail.com", "(00)0000-0000");
-	 
-	 hospedeRepository.save(hospede1);
-	 
-	 Hospede saveHospede = hospedeRepository.findById(hospede1.getId()).get();
-	 
-	 assertNotNull(saveHospede);
-	 assertEquals(hospede1.getId(), saveHospede.getId());
- }
- 
- @DisplayName("Testando o Update")
- @Test
- void testUpdateHospede() {
-	 Hospede hospede1 = new Hospede(null, "Julio Fernando","julio@gmail.com", "(00)0000-0000");
-	 
-	 hospedeRepository.save(hospede1);
-	 
-	 Hospede saveHospede = hospedeRepository.findById(hospede1.getId()).get();
-	 hospede1.setNome("Leonardo");
-	 hospede1.setEmail("leonardo@gmail.com");
-	 
-	 Hospede updateHospede = hospedeRepository.save(saveHospede);
-	 
-	 assertNotNull(updateHospede);
-	 assertEquals("Leonardo", updateHospede.getNome());
-	 assertEquals("leonardo@gmail.com", updateHospede.getEmail());
- }
- 
- @DisplayName("testando o Delete")
- @Test
- void testDeleteHospede() {
-	 
-	 Hospede hospede1 = new Hospede(null, "Julio Fernando", "julio@gmail.com", "(00)0000-0000");
-	 
-	 hospedeRepository.save(hospede1);
-	 
-	 hospedeRepository.deleteById(hospede1.getId());
-	 
-	 Optional<Hospede> hospedeOptional = hospedeRepository.findById(hospede1.getId());
-	 
-	 assertTrue(hospedeOptional.isEmpty());
-	 
- }
+	@DisplayName("Testando Get para todos Hospedes")
+	@Test
+	void testGetAllRepository() {
+
+		Hospede hospede1 = new Hospede(null, "Julia Maria", "julia@gmail.com", "(00)0000-0000");
+
+		Hospede hospede2 = new Hospede(null, "Julio Fernando", "julio@gmail.com", "(00)0000-0000");
+
+		hospedeRepository.save(hospede1);
+		hospedeRepository.save(hospede2);
+
+		List<Hospede> hospedeList = hospedeRepository.findAll();
+
+		assertNotNull(hospedeList);
+		assertEquals(2, hospedeList.size());
+
+	}
+
+	@DisplayName("Testando GET By ID")
+	@Test
+	void testGetById() {
+
+		Hospede hospede1 = new Hospede(null, "Julio Fernando", "julio@gmail.com", "(00)0000-0000");
+
+		hospedeRepository.save(hospede1);
+
+		Hospede saveHospede = hospedeRepository.findById(hospede1.getId()).get();
+
+		assertNotNull(saveHospede);
+		assertEquals(hospede1.getId(), saveHospede.getId());
+	}
+
+	@DisplayName("Testando o Update")
+	@Test
+	void testUpdateHospede() {
+		Hospede hospede1 = new Hospede(null, "Julio Fernando","julio@gmail.com", "(00)0000-0000");
+
+		hospedeRepository.save(hospede1);
+
+		Hospede saveHospede = hospedeRepository.findById(hospede1.getId()).get();
+		hospede1.setNome("Leonardo");
+		hospede1.setEmail("leonardo@gmail.com");
+
+		Hospede updateHospede = hospedeRepository.save(saveHospede);
+
+		assertNotNull(updateHospede);
+		assertEquals("Leonardo", updateHospede.getNome());
+		assertEquals("leonardo@gmail.com", updateHospede.getEmail());
+	}
+
+	@DisplayName("testando o Delete")
+	@Test
+	void testDeleteHospede() {
+
+		Hospede hospede1 = new Hospede(null, "Julio Fernando", "julio@gmail.com", "(00)0000-0000");
+
+		hospedeRepository.save(hospede1);
+
+		hospedeRepository.deleteById(hospede1.getId());
+
+		Optional<Hospede> hospedeOptional = hospedeRepository.findById(hospede1.getId());
+
+		assertTrue(hospedeOptional.isEmpty());
+
+	}
 }
 
 
